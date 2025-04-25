@@ -39,10 +39,40 @@ create table sites_restaurant(
 
 create table table_sites(
     id_table int auto_increment,
+     id_sites_restaurant int,
     name_table varchar(60),
     estado_mesa boolean,
     numero_mesa int,
     primary key(id_table),
+
+    constraint fk_sitesRestaurant foreign key (id_sites_restaurant) references sites_restaurant(id_sites_restaurant)
+
+);
+
+create table category_menu(
+    id_category_menu int auto_increment,
+    id_restaurant int ,
+    name_category_menu varchar(80),
+    primary key(id_category_menu),
+
+    constraint fk_restaurantID3 foreign key (id_restaurant) references restaurante(id_restaurant)
+
+);
+
+create table products(
+    id_product int auto_increment,
+    id_category_menu int,
+    name_product varchar(100),
+    stock_product int,
+    stock_status boolean,
+    type_product varchar(10);
+    price_product int,
+
+    primary key(id_product),
+
+    constraint fk_categoryMenuID foreign key (id_category_menu) references category_menu(id_category_menu)
+
+
 
 );
 
